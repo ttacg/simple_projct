@@ -1,0 +1,146 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Create build directory",
+            "type": "shell",
+            "command": "New-Item -ItemType Directory -Force -Path \"${workspaceFolder}\\build\" | Out-Null",
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": [
+                        "-NoProfile",
+                        "-ExecutionPolicy",
+                        "Bypass",
+                        "-Command"
+                    ]
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build active C++ file",
+            "type": "shell",
+            "command": "D:\\mingw\\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64msvcrt-14.0.0-r7\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-std=c++17",
+                "-finput-charset=UTF-8",
+                "-fexec-charset=UTF-8",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-O0",
+                "${file}",
+                "-o",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Create build directory"
+            ],
+            "detail": "Compile the active C++ file with debug symbols and warnings enabled."
+        },
+        {
+            "label": "Run active C++ file in external window",
+            "type": "shell",
+            "command": "Start-Process",
+            "args": [
+                "cmd.exe",
+                "-ArgumentList",
+                "'/k \"chcp 65001 > nul && ${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
+            ],
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": [
+                        "-NoProfile",
+                        "-ExecutionPolicy",
+                        "Bypass",
+                        "-Command"
+                    ]
+                }
+            },
+            "problemMatcher": [],
+            "dependsOn": [
+                "Build active C++ file"
+            ],
+            "detail": "Run the compiled program in an external window and keep it open."
+        },
+        {
+            "label": "Build active OpenGL file",
+            "type": "shell",
+            "command": "D:\\mingw\\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64msvcrt-14.0.0-r7\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-std=c++17",
+                "-finput-charset=UTF-8",
+                "-fexec-charset=UTF-8",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-O0",
+                "-IC:\\freeglut\\include",
+                "-IC:\\glew-2.1.0\\include",
+                "${file}",
+                "-o",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
+                "-LC:\\freeglut\\lib\\x64",
+                "-LC:\\glew-2.1.0\\lib\\Release\\x64",
+                "-lfreeglut",
+                "-lglew32",
+                "-lopengl32",
+                "-lglu32",
+                "-lgdi32",
+                "-lwinmm"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "dependsOn": [
+                "Create build directory"
+            ],
+            "detail": "Compile the active C++ file with freeglut, GLEW, and OpenGL."
+        },
+        {
+            "label": "Run active OpenGL file in external window",
+            "type": "shell",
+            "command": "Start-Process",
+            "args": [
+                "cmd.exe",
+                "-ArgumentList",
+                "'/k \"chcp 65001 > nul && ${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
+            ],
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": [
+                        "-NoProfile",
+                        "-ExecutionPolicy",
+                        "Bypass",
+                        "-Command"
+                    ]
+                }
+            },
+            "problemMatcher": [],
+            "dependsOn": [
+                "Build active OpenGL file"
+            ],
+            "detail": "Run the compiled OpenGL program in an external window and keep it open."
+        }
+    ]
+}
