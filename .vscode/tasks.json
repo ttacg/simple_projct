@@ -44,7 +44,7 @@
             ],
             "group": {
                 "kind": "build",
-                "isDefault": true
+                "isDefault": false
             },
             "dependsOn": [
                 "Create build directory"
@@ -56,9 +56,12 @@
             "type": "shell",
             "command": "Start-Process",
             "args": [
+                "-FilePath",
                 "cmd.exe",
+                "-WorkingDirectory",
+                "${fileDirname}",
                 "-ArgumentList",
-                "'/k \"chcp 65001 > nul && ${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
+                "'/k', 'chcp 936 > nul && \"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
             ],
             "options": {
                 "shell": {
@@ -72,6 +75,10 @@
                 }
             },
             "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "dependsOn": [
                 "Build active C++ file"
             ],
@@ -121,9 +128,12 @@
             "type": "shell",
             "command": "Start-Process",
             "args": [
+                "-FilePath",
                 "cmd.exe",
+                "-WorkingDirectory",
+                "${fileDirname}",
                 "-ArgumentList",
-                "'/k \"chcp 65001 > nul && ${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
+                "'/k', 'chcp 936 > nul && \"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
             ],
             "options": {
                 "shell": {
