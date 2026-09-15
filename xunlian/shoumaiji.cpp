@@ -100,10 +100,6 @@ void buy(Product product[],Buyer &buyer,int count)
       {
         break;
       }
-      else if(Order==1)
-      {
-        showup(product,buyer);
-      }
       else if(Order==2)
       {
         continue;
