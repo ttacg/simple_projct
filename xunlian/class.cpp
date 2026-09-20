@@ -23,7 +23,7 @@ void show()
     }
 void takeDamage(int damage)
     {
-        if(hp-=damage<=0)
+        if(hp-damage<=0)
         {
             hp=0;
             return;
