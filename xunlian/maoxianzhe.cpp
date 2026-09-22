@@ -53,6 +53,10 @@ void news::show(const vector<news> &panel)
 }
 void news::find(const vector<news> &panel)
 {  
+     if(!panel.size())
+    {
+        return;
+    }
     string name;
     cout<<"请输入要查找的悬赏名字：";
     cin>>name;
@@ -74,6 +78,10 @@ void news::find(const vector<news> &panel)
 }
 void news::deletenew(vector<news> &panel)
 { 
+    if(!panel.size())
+    {
+        return;
+    }
     string name;
     cout<<"请输入要删除的悬赏名字：";
     cin>>name;
@@ -132,6 +140,9 @@ cin>>nums;
     else if(nums==5)
     {
         break;
+    }
+    else{
+        cout<<"请重新输入：";
     }
 }
 }
