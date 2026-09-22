@@ -25,7 +25,7 @@
             "args": [
                 "-std=c++17",
                 "-finput-charset=UTF-8",
-                "-fexec-charset=GBK",
+                "-fexec-charset=UTF-8",
                 "-Wall",
                 "-Wextra",
                 "-Wpedantic",
@@ -61,7 +61,7 @@
                 "-WorkingDirectory",
                 "${fileDirname}",
                 "-ArgumentList",
-                "'/k', 'chcp 936 > nul && \"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
+                "'/k', 'chcp 65001 > nul && \"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
             ],
             "options": {
                 "shell": {
@@ -91,7 +91,7 @@
             "args": [
                 "-std=c++17",
                 "-finput-charset=UTF-8",
-                "-fexec-charset=GBK",
+                "-fexec-charset=UTF-8",
                 "-Wall",
                 "-Wextra",
                 "-Wpedantic",
@@ -133,7 +133,7 @@
                 "-WorkingDirectory",
                 "${fileDirname}",
                 "-ArgumentList",
-                "'/k', 'chcp 936 > nul && \"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
+                "'/k', 'chcp 65001 > nul && \"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
             ],
             "options": {
                 "shell": {
