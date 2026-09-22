@@ -29,6 +29,7 @@ public:
     int getdefense();
     void repotion();
     int gethp();
+    int getmaxhp();
     void rehp(int endhurt);
 };
 class Enemy
@@ -71,6 +72,10 @@ int Player::getdefense()
 {
     return defense;
 }
+int Player::getmaxhp()
+{
+    return maxhp;
+}
 void Player:: repotion()
 {
     potion--;
@@ -100,7 +105,7 @@ void Player::playerusedrug(int recover)
     endcare=recover;
    }
    hp+=endcare;
-   cout<<"回复血量为"<<endcare;
+   cout<<"回复血量为"<<endcare<<endl;
 }
 void playerattackenemy(Player player,Enemy &enemy)
 {
@@ -132,6 +137,11 @@ void playeraction(Player &player,Enemy &enemy)
     }
     else if(choice==2)
     {
+        if(player.gethp()==player.getmaxhp())
+        {
+            cout<<"血量已满，无法使用药剂！"<<endl;
+            break;
+        }
         if(player.getpotion()>0)
         {
         player.playerusedrug(25);
