@@ -140,7 +140,7 @@ void playeraction(Player &player,Enemy &enemy)
         if(player.gethp()==player.getmaxhp())
         {
             cout<<"血量已满，无法使用药剂！"<<endl;
-            break;
+            continue;
         }
         if(player.getpotion()>0)
         {
