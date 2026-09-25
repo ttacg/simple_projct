@@ -2,21 +2,6 @@
     "version": "2.0.0",
     "configurations": [
         {
-            "name": "Run active C++ file in integrated terminal",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "internalConsoleOptions": "neverOpen",
-            "MIMode": "gdb",
-            "miDebuggerPath": "D:\\mingw\\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64msvcrt-14.0.0-r7\\mingw64\\bin\\gdb.exe",
-            "preLaunchTask": "Build active C++ file"
-        },
-        {
             "name": "Debug active C++ file",
             "type": "cppdbg",
             "request": "launch",
@@ -35,7 +20,8 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "Build active C++ file"
+            "preLaunchTask": "Build active C++ file",
+            "internalConsoleOptions": "neverOpen"
         },
         {
             "name": "Debug active OpenGL file",
@@ -56,7 +42,8 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "Build active OpenGL file"
+            "preLaunchTask": "Build active OpenGL file",
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }

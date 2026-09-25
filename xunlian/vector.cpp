@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 using namespace std;
 
 struct Enemy
@@ -32,9 +35,9 @@ void find(const vector<Enemy> &enemies)
 }
 void show(const vector<Enemy> &enemies)
 {
+    cout<<"敌人信息如下："<<endl;
     for(size_t i=0;i<enemies.size();i++)
     {
-        cout<<"敌人信息如下："<<endl;
         cout<<enemies[i].name<<" ";
         cout<<enemies[i].hp<<" ";
         cout<<endl;
@@ -63,6 +66,7 @@ void deleteenemy(vector<Enemy> &enemies)
      {
         if(enemies[i].name==target2)
         {
+            cout<<"成功删除！"<<endl;
             enemies.erase(enemies.begin()+i);
             break;
         }
@@ -71,6 +75,10 @@ void deleteenemy(vector<Enemy> &enemies)
 }
 int main()
 {
+#ifdef _WIN32
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+#endif
     vector<Enemy> enemies;
     import(enemies,3);
     show(enemies);

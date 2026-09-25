@@ -16,7 +16,8 @@
                     ]
                 }
             },
-            "problemMatcher": []
+            "problemMatcher": [],
+            "hide": true
         },
         {
             "label": "Build active C++ file",
@@ -37,33 +38,7 @@
                 "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "dependsOn": [
-                "Create build directory"
-            ],
-            "detail": "Compile the active C++ file with debug symbols and warnings enabled."
-        },
-        {
-            "label": "Run active C++ file in external window",
-            "type": "shell",
-            "command": "Start-Process",
-            "args": [
-                "-FilePath",
-                "cmd.exe",
-                "-WorkingDirectory",
-                "${fileDirname}",
-                "-ArgumentList",
-                "'/k', 'chcp 65001 > nul && \"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
-            ],
-            "options": {
+                "cwd": "${fileDirname}",
                 "shell": {
                     "executable": "powershell.exe",
                     "args": [
@@ -74,11 +49,32 @@
                     ]
                 }
             },
-            "problemMatcher": [],
+            "problemMatcher": [
+                "$gcc"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
+            "dependsOn": [
+                "Create build directory"
+            ],
+            "detail": "Compile the active C++ file with debug symbols and warnings enabled."
+        },
+        {
+            "label": "Run active C++ file in external window",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\.vscode\\run-utf8.ps1",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
+                "${fileDirname}"
+            ],
+            "problemMatcher": [],
             "dependsOn": [
                 "Build active C++ file"
             ],
@@ -113,7 +109,16 @@
                 "-lwinmm"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${fileDirname}",
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": [
+                        "-NoProfile",
+                        "-ExecutionPolicy",
+                        "Bypass",
+                        "-Command"
+                    ]
+                }
             },
             "problemMatcher": [
                 "$gcc"
@@ -125,27 +130,17 @@
         },
         {
             "label": "Run active OpenGL file in external window",
-            "type": "shell",
-            "command": "Start-Process",
+            "type": "process",
+            "command": "powershell.exe",
             "args": [
-                "-FilePath",
-                "cmd.exe",
-                "-WorkingDirectory",
-                "${fileDirname}",
-                "-ArgumentList",
-                "'/k', 'chcp 65001 > nul && \"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe\"'"
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\.vscode\\run-utf8.ps1",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
+                "${fileDirname}"
             ],
-            "options": {
-                "shell": {
-                    "executable": "powershell.exe",
-                    "args": [
-                        "-NoProfile",
-                        "-ExecutionPolicy",
-                        "Bypass",
-                        "-Command"
-                    ]
-                }
-            },
             "problemMatcher": [],
             "dependsOn": [
                 "Build active OpenGL file"
