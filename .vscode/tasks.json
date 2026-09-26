@@ -2,6 +2,15 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "C/C++: g++.exe 生成活动文件",
+            "type": "process",
+            "command": "cmd.exe",
+            "args": ["/c", "exit", "0"],
+            "dependsOn": "Build active C++ file",
+            "problemMatcher": [],
+            "hide": true
+        },
+        {
             "label": "Create build directory",
             "type": "shell",
             "command": "New-Item -ItemType Directory -Force -Path \"${workspaceFolder}\\build\" | Out-Null",
@@ -34,6 +43,7 @@
                 "-g3",
                 "-O0",
                 "${file}",
+                "${workspaceFolder}\\.vscode\\console-utf8.cpp",
                 "-o",
                 "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
             ],
@@ -60,6 +70,50 @@
                 "Create build directory"
             ],
             "detail": "Compile the active C++ file with debug symbols and warnings enabled."
+        },
+        {
+            "label": "Build active C++ file for debugging",
+            "type": "shell",
+            "command": "D:\\mingw\\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64msvcrt-14.0.0-r7\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-std=c++17",
+                "-finput-charset=UTF-8",
+                "-fexec-charset=UTF-8",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-fdiagnostics-color=always",
+                "-g3",
+                "-O0",
+                "${file}",
+                "${workspaceFolder}\\.vscode\\console-utf8.cpp",
+                "-o",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.debug.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}",
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": [
+                        "-NoProfile",
+                        "-ExecutionPolicy",
+                        "Bypass",
+                        "-Command"
+                    ]
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": [
+                "Create build directory"
+            ],
+            "detail": "Compile the active C++ file to a separate debug executable.",
+            "hide": true
         },
         {
             "label": "Run active C++ file in external window",

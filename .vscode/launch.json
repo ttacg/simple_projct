@@ -2,10 +2,33 @@
     "version": "2.0.0",
     "configurations": [
         {
+            "name": "Run active C++ file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\.vscode\\run-utf8.ps1",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
+                "${fileDirname}"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:\\mingw\\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64msvcrt-14.0.0-r7\\mingw64\\bin\\gdb.exe",
+            "preLaunchTask": "C/C++: g++.exe 生成活动文件",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
             "name": "Debug active C++ file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}\\build\\${fileBasenameNoExtension}.debug.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -20,7 +43,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "Build active C++ file",
+            "preLaunchTask": "Build active C++ file for debugging",
             "internalConsoleOptions": "neverOpen"
         },
         {
