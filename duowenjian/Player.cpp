@@ -1,5 +1,4 @@
-#include "Character.h"
-#include "PLayer.h"
+#include "Player.h"
 #include <iostream>
 
 Player::Player(int ghp, int gmaxHp, int gattack, int gdefense):
