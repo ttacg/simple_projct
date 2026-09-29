@@ -64,7 +64,7 @@
             ],
             "group": {
                 "kind": "build",
-                "isDefault": true
+                "isDefault": false
             },
             "dependsOn": [
                 "Create build directory"
@@ -135,55 +135,35 @@
             "detail": "Run the compiled program in an external window and keep it open."
         },
         {
-            "label": "Build active OpenGL file",
-            "type": "shell",
-            "command": "D:\\mingw\\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64msvcrt-14.0.0-r7\\mingw64\\bin\\g++.exe",
+            "label": "Build all C++ files in active folder",
+            "type": "process",
+            "command": "powershell.exe",
             "args": [
-                "-std=c++17",
-                "-finput-charset=UTF-8",
-                "-fexec-charset=UTF-8",
-                "-Wall",
-                "-Wextra",
-                "-Wpedantic",
-                "-fdiagnostics-color=always",
-                "-g3",
-                "-O0",
-                "-IC:\\freeglut\\include",
-                "-IC:\\glew-2.1.0\\include",
-                "${file}",
-                "-o",
-                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
-                "-LC:\\freeglut\\lib\\x64",
-                "-LC:\\glew-2.1.0\\lib\\Release\\x64",
-                "-lfreeglut",
-                "-lglew32",
-                "-lopengl32",
-                "-lglu32",
-                "-lgdi32",
-                "-lwinmm"
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}\\.vscode\\build-multifile.ps1",
+                "${fileDirname}",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.multi.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}",
-                "shell": {
-                    "executable": "powershell.exe",
-                    "args": [
-                        "-NoProfile",
-                        "-ExecutionPolicy",
-                        "Bypass",
-                        "-Command"
-                    ]
-                }
+                "cwd": "${fileDirname}"
             },
             "problemMatcher": [
                 "$gcc"
             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "dependsOn": [
                 "Create build directory"
             ],
-            "detail": "Compile the active C++ file with freeglut, GLEW, and OpenGL."
+            "detail": "Compile all .cpp files beside the active file with debug symbols and warnings enabled."
         },
         {
-            "label": "Run active OpenGL file in external window",
+            "label": "Run all C++ files in active folder in external window",
             "type": "process",
             "command": "powershell.exe",
             "args": [
@@ -192,14 +172,14 @@
                 "Bypass",
                 "-File",
                 "${workspaceFolder}\\.vscode\\run-utf8.ps1",
-                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.multi.exe",
                 "${fileDirname}"
             ],
             "problemMatcher": [],
             "dependsOn": [
-                "Build active OpenGL file"
+                "Build all C++ files in active folder"
             ],
-            "detail": "Run the compiled OpenGL program in an external window and keep it open."
+            "detail": "Run the multi-file program in an external window and keep it open."
         }
     ]
 }
