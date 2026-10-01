@@ -3,5 +3,5 @@
 class Enemy :public Character
 {
 public:
-Enemy(int ghp,int gmaxhp,int gattack);
+Enemy(std::string name,int ghp,int gmaxhp,int gattack);
 };

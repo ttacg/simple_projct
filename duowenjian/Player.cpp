@@ -1,8 +1,8 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(int ghp, int gmaxHp, int gattack, int gdefense):
-Character(ghp,gmaxHp,gattack,gdefense)
+Player::Player(std::string gname,int ghp, int gmaxHp, int gattack, int gdefense):
+Character(gname,ghp,gmaxHp,gattack,gdefense)
 {
     gold=0;
     potion=3;

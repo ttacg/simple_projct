@@ -1,20 +1,21 @@
 #include <iostream>
 #include "Game.h"
-Game::Game(int playerhp, int playermaxHp, int playerattack, int playerdefense, int enemyhp, int gmaxhp, int enemyattack) :
- player(playerhp, playermaxHp, playerattack, playerdefense), enemy(enemyhp, gmaxhp, enemyattack) {}
+Game::Game(std::string playername, int playerhp, int playermaxHp, int playerattack, int playerdefense,
+           std::string enemyname, int enemyhp, int enemymaxhp, int enemyattack) : 
+           player(playername, playerhp, playermaxHp, playerattack, playerdefense), enemy(enemyname, enemyhp, enemymaxhp, enemyattack) {}
 void Game::showplayerhp()
 {
-    std::cout << "玩家血量：" << player.gethp();
+    std::cout << player.getname()<<"血量：" << player.gethp();
     std::cout << std::endl;
 }
 void Game::showenemyhp()
 {
-    std::cout << "敌人血量：" << enemy.gethp();
+    std::cout << enemy.getname()<<"血量：" << enemy.gethp();
     std::cout << std::endl;
 }
 void Game::playerattackenemy()
 {
-    std::cout << "玩家发动攻击，造成" << player.getattack() << "点伤害!" << std::endl;
+    std::cout <<player.getname()<< "发动攻击，造成" << player.getattack() << "点伤害!" << std::endl;
     int damage = player.getattack();
     enemy.takedamage(damage);
 }
@@ -33,7 +34,7 @@ void Game::playeraction()
         }
         else if (choice == 2)
         {
-            if (player.gethp() == player.getmaxhp())
+            if (player.gethp() >= player.getmaxhp())
             {
                 std::cout << "血量已满，无法使用药剂！" << std::endl;
                 continue;
@@ -46,7 +47,7 @@ void Game::playeraction()
             }
             else
             {
-                std::cout << "药剂不足!";
+                std::cout << "药剂不足!"<<std::endl;
             }
         }
     }
@@ -77,18 +78,18 @@ void Game::combat()
     showplayerhp();
     if (enemy.isDead())
     {
-        std::cout << "玩家胜利!" << std::endl;
+        std::cout <<player.getname()<< "胜利!" << std::endl;
         player.reward();
         return;
     }
-    std::cout << "玩家失败!";
+    std::cout <<player.getname()<< "失败!";
 }
 void Game::enemyattackplayer()
 {
     int endhurt;
     int enddefense;
-    std::cout << "敌人发动攻击" << std::endl;
-    std::cout << "玩家防御为" << player.getdefense() << std::endl;
+    std::cout <<enemy.getname()<< "发动攻击" << std::endl;
+    std::cout <<player.getname()<< "防御为" << player.getdefense() << std::endl;
     if (player.getdefense() >= enemy.getattack())
     {
         endhurt = 1;
@@ -99,16 +100,16 @@ void Game::enemyattackplayer()
     }
     enddefense = enemy.getattack() - endhurt;
     player.takedamage(endhurt);
-    std::cout << "玩家受到" << endhurt << "点伤害" << std::endl;
+    std::cout <<player.getname()<< "受到" << endhurt << "点伤害" << std::endl;
     std::cout << "防御挡掉了" << enddefense << "点伤害" << std::endl;
 }
 void attack(Character &attacker, Character &target)
 {
     int damage = attacker.getattack();
+    damage = attacker.getattack() - target.getdefense();
     if (target.getdefense() >= attacker.getattack())
     {
         damage = 1;
     }
-    damage = attacker.getattack() - target.getdefense();
     target.takedamage(damage);
 }

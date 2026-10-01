@@ -6,7 +6,7 @@ private:
     int gold;
     int potion;
 public:
-    Player(int ghp, int gmaxHp, int gattack, int gdefense);
+    Player(std::string name,int ghp, int gmaxHp, int gattack, int gdefense);
     void playerusedrug(int recover);
     void reward();
     int getpotion();

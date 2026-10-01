@@ -7,7 +7,7 @@ class Game
     Player player;
     Enemy enemy;
     public:
-    Game(int playerhp,int playermaxHp,int playerattack,int playerdefense,int enemyhp,int gmaxhp,int enemyattack);
+    Game(std::string playername,int playerhp,int playermaxHp,int playerattack,int playerdefense,std::string enemyname,int enemyhp,int enemymaxhp,int enemyattack);
     void showplayerhp();
     void showenemyhp();
     void playerattackenemy();

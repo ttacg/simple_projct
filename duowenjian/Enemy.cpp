@@ -1,3 +1,3 @@
 #include "Enemy.h"
-Enemy::Enemy(int ghp,int gmaxhp,int gattack):
-Character(ghp,gmaxhp,gattack,0){}
+Enemy::Enemy(std::string gname,int ghp,int gmaxhp,int gattack):
+Character(gname,ghp,gmaxhp,gattack,0){}

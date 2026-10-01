@@ -2,6 +2,6 @@
 #include "Game.h"
 int main()
 {
-    Game game(100, 100, 30, 10, 80, 80, 20);
+    Game game("勇者",100, 100, 30, 10,"哥布林", 80, 80, 20);
     game.combat();
 }
